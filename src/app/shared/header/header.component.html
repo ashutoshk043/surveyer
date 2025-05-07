@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="/">Surveyer.com</a> <!-- Changed span to 'a' for proper anchor behavior -->
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 1 }">
+          <a class="nav-link text-white" (click)="showHideActiveClass(1)">Running Surveys</a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 2 }">
+          <a class="nav-link text-white" (click)="showHideActiveClass(2)">Completed Surveys</a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 3 }">
+          <a class="nav-link text-white" (click)="showHideActiveClass(3)">Upcoming Surveys</a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 4 }">
+          <a class="nav-link text-white" (click)="showHideActiveClass(4)">Survey Suggestions</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,75 @@
+/* Background for the page or section */
+body {
+  background: linear-gradient(to right, #f2f7fd, #e9f3f9);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container spacing */
+.container {
+  padding: 30px;
+}
+
+/* Card style */
+.card {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(34, 60, 80, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(34, 60, 80, 0.25);
+}
+
+/* Image */
+.card img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Card content */
+.card-body {
+  padding: 20px;
+  background-color: #f9fbfc;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #607d8b;
+}
+
+/* Buttons inside cards */
+.card .btn {
+  margin-top: 15px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.card .btn:hover {
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+}
+
+/* Row spacing */
+.row {
+  margin-top: 15px;
+}

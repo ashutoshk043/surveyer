@@ -1,0 +1,32 @@
+<div class="container py-3">
+  <div class="row">
+    <!-- Cards Section -->
+    <div class="col-12 col-md-10">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 mb-3" *ngFor="let card of cards">
+          <a [routerLink]="['/survey', card.title]" class="text-decoration-none">
+            <app-card 
+              [title]="card.title" 
+              [image]="card.image" 
+              [description]="card.description">
+            </app-card>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ads Section -->
+    <div class="col-12 col-md-2">
+      <div class="ad-space">
+        <div class="ad-content">
+          <img 
+            src="https://via.placeholder.com/300x250" 
+            alt="Advertisement" 
+            class="img-fluid" 
+            loading="lazy">
+          <p class="text-center small mt-2">Advertisement</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

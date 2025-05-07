@@ -27,9 +27,13 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/cyan-orange.css",
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -42,12 +46,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumError": "10kB"
                 }
               ],
               "outputHashing": "all"
@@ -90,6 +94,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -97,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "9b297852-e247-492c-83c6-0d3beee838fc"
   }
 }
