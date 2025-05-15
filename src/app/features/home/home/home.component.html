@@ -1,32 +1,223 @@
-<div class="container py-3">
-  <div class="row">
-    <!-- Cards Section -->
-    <div class="col-12 col-md-10">
-      <div class="row">
-        <div class="col-12 col-sm-6 col-md-4 mb-3" *ngFor="let card of cards">
-          <a [routerLink]="['/survey', card.title]" class="text-decoration-none">
-            <app-card 
-              [title]="card.title" 
-              [image]="card.image" 
-              [description]="card.description">
-            </app-card>
-          </a>
+    <div class="cards-container">
+        <!-- Regular Article Cards -->
+        <h2 class="section-title">Featured Articles</h2>
+        <!-- Row 1 -->
+        <div class="row">
+            <div class="card">
+                <span class="card-tag tech">Tech</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Tech News">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">What's New in 2025 Tech</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus magnam assumenda tenetur, ipsam dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Jane Doe</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag food">Food</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Food">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Delicious Food Recipes</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Ming Dao</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag lifestyle">Lifestyle</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Lifestyle">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Race To Your Heart Content</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">John Doe</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag travel">Travel</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Travel">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Top 10 Destinations 2025</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Sarah Smith</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Ads Section -->
-    <div class="col-12 col-md-2">
-      <div class="ad-space">
-        <div class="ad-content">
-          <img 
-            src="https://via.placeholder.com/300x250" 
-            alt="Advertisement" 
-            class="img-fluid" 
-            loading="lazy">
-          <p class="text-center small mt-2">Advertisement</p>
+        
+        <!-- Ad Section -->
+        <div class="ad-section">
+            <h2>Subscribe Now For Premium Content</h2>
+            <p>Get access to exclusive articles, videos, and resources that will help you stay ahead of the curve.</p>
+            <a href="#" class="ad-button">Get Started</a>
         </div>
-      </div>
+        
+        <!-- Row 2 -->
+        <div class="row">
+            <div class="card">
+                <span class="card-tag tech">Tech</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="AI News">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">AI Revolution in Business</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus magnam assumenda tenetur, ipsam dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Alex Chen</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag food">Food</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Vegan Food">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Vegan Cuisine Trends</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Ella Green</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag lifestyle">Lifestyle</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Fitness">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Fitness For Busy People</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Mark Strong</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag travel">Travel</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Budget Travel">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Budget Travel Hacks</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Tom Nomad</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Row 3 -->
+        <div class="row">
+            <div class="card">
+                <span class="card-tag tech">Tech</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Cybersecurity">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Cybersecurity Essentials</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus magnam assumenda tenetur, ipsam dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Martin Secure</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag food">Food</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Cocktails">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Summer Cocktail Recipes</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Nina Mix</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag lifestyle">Lifestyle</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Minimalism">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Minimalist Living Guide</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Lisa Less</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <span class="card-tag travel">Travel</span>
+                <div class="card-image">
+                    <img src="/api/placeholder/400/320" alt="Solo Travel">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Solo Travel Adventures</h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducati porchetta magnatum repellat, ipsum dignissimos excepturi vel debitis deserunt accusantium ad quasi quaerat!</p>
+                    <div class="card-footer">
+                        <div class="author-image">
+                            <img src="/api/placeholder/50/50" alt="Author">
+                        </div>
+                        <div class="author-name">Amy Wanderer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
