@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CardComponent } from "../../../shared/ui/card/card.component";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [MatSlideToggleModule, CardComponent, CommonModule, RouterModule],
+  imports: [MatSlideToggleModule, CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
