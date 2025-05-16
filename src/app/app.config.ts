@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideShareButtonsOptions, withConfig } from 'ngx-sharebuttons';
 import { shareIcons } from 'ngx-sharebuttons/icons';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,10 @@ export const appConfig: ApplicationConfig = {
     ),
     provideShareButtonsOptions(
       shareIcons()
-    )
+    ),
+
+    provideHttpClient(
+      withFetch(),
+    ),
   ]
 };
