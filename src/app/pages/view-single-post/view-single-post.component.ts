@@ -3,7 +3,10 @@ import { ShareButtons } from 'ngx-sharebuttons/buttons';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule ,Location} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
+
 
 @Component({
   selector: 'app-view-single-post',
@@ -17,16 +20,20 @@ export class ViewSinglePostComponent {
   blogsData:any
   fullUrl:any
 
-  constructor(private route: ActivatedRoute, private http:HttpClient,private location: Location) {
+  constructor(private route: ActivatedRoute, private http:HttpClient,@Inject(PLATFORM_ID) private platformId: Object) {
 
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const metaHeading = params.get('id');  // or the param name in your route
+    const metaHeading = params.get('id');
+    this.getSingleBlogbyMetaHeading(metaHeading);
+
+    if (isPlatformBrowser(this.platformId)) {
       this.fullUrl = window.location.href;
-      this.getSingleBlogbyMetaHeading(metaHeading)
-    });
+      console.log('Full URL:', this.fullUrl);
+    }
+  });
   }
 
 
