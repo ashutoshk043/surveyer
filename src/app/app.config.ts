@@ -9,7 +9,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()),
+    provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), 
+    // provideClientHydration(withEventReplay()),  // this diasbles event reply in network tab
 
     provideShareButtonsOptions(
       withConfig({
