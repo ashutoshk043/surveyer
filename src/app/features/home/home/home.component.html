@@ -25,7 +25,7 @@
          <div class="card" *ngFor="let n of row1Cards" [routerLink]="['/survey', n.metaheading]">
                 <span class="card-tag {{n.color}}">{{n?.category}}</span>
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fHww" alt="Food">
+                    <img src={{n.thumbnail}} alt={{n.metaheading}}>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">{{n?.heading}}</h3>

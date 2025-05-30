@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
-
+import { SurveyFormsComponent } from '../../shared/survey-forms/survey-forms.component';
 
 @Component({
   selector: 'app-view-single-post',
   standalone: true,
-  imports: [ShareButtons, CommonModule],
+  imports: [ShareButtons, CommonModule,SurveyFormsComponent],
   templateUrl: './view-single-post.component.html',
   styleUrl: './view-single-post.component.css'
 })
@@ -40,6 +40,9 @@ export class ViewSinglePostComponent {
   getSingleBlogbyMetaHeading(metaHeading:any){
     this.http.get(`${environment.serverUrl}/connected/getBlogByMetaHeading/${metaHeading}`).subscribe((res:any)=>{
       this.blogsData = res?.message
+
+      console.log(this.blogsData, "blogsData")
+
     })
   }
 

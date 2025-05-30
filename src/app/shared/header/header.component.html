@@ -10,17 +10,17 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" [ngClass]="{ 'active': activeIndex === 1 }">
-          <a class="nav-link text-white" (click)="showHideActiveClass(1)">Running Surveys</a>
+          <a class="nav-link text-white" (click)="showHideActiveClass(1)" [routerLink]="['/']" >Articles</a>
         </li>
         <li class="nav-item" [ngClass]="{ 'active': activeIndex === 2 }">
-          <a class="nav-link text-white" (click)="showHideActiveClass(2)">Completed Surveys</a>
+          <a class="nav-link text-white" (click)="showHideActiveClass(2)" [routerLink]="['/surveys']">Surveys</a>
         </li>
-        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 3 }">
+        <!-- <li class="nav-item" [ngClass]="{ 'active': activeIndex === 3 }">
           <a class="nav-link text-white" (click)="showHideActiveClass(3)">Upcoming Surveys</a>
-        </li>
-        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 4 }">
+        </li> -->
+        <!-- <li class="nav-item" [ngClass]="{ 'active': activeIndex === 4 }">
           <a class="nav-link text-white" (click)="showHideActiveClass(4)">Survey Suggestions</a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
