@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShareButtons } from 'ngx-sharebuttons/buttons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -9,16 +9,16 @@ import { Inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { sanitizeInputObject } from '../../../sanitize.util';
-import { NotFoundComponent } from '../../not-found/not-found.component';
+import { MetaService } from '../../services/metadata.service';
 
 @Component({
   selector: 'app-view-single-post',
   standalone: true,
-  imports: [ShareButtons, CommonModule, ReactiveFormsModule, NotFoundComponent],
+  imports: [ShareButtons, CommonModule, ReactiveFormsModule],
   templateUrl: './view-single-post.component.html',
-  styleUrl: './view-single-post.component.css'
+  styleUrls: ['./view-single-post.component.css']
 })
-export class ViewSinglePostComponent {
+export class ViewSinglePostComponent implements OnInit {
 
   blogsData: any
   fullUrl: any
@@ -36,7 +36,8 @@ export class ViewSinglePostComponent {
     private platformId: Object,
     private fb: FormBuilder,
     private toster: ToastrService,
-    private router:Router
+    private router: Router,
+    private metaService: MetaService
 
   ) {
 
@@ -48,7 +49,8 @@ export class ViewSinglePostComponent {
       this.getSingleBlogbyMetaHeading(this.metaHeading);
 
       if (isPlatformBrowser(this.platformId)) {
-        this.fullUrl = window.location.href;
+        // this.fullUrl = window.location.href;
+       this.fullUrl  = decodeURIComponent(window.location.href);
         console.log('Full URL:', this.fullUrl);
       }
     });
@@ -65,50 +67,57 @@ export class ViewSinglePostComponent {
     });
   }
 
-getSingleBlogbyMetaHeading(metaHeading: any) {
-  this.http.get(`${environment.serverUrl}/connected/getBlogByMetaHeading/${metaHeading}`).subscribe({
-    next: (res: any) => {
-      if (res.status === true) {
-        this.blogsData = res.message;
-        this.setupPagination();
-      } else {
-        this.toster.error(res.message || 'Blog Does Not Exist!');
-        // Wait 2 seconds before redirecting so user sees the message
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 2000);
-      }
-    },
-    error: (err) => {
-      this.toster.error('Something went wrong, please try again.');
-      this.router.navigate(['/']);
-    }
-  });
-}
-
-
-onSubmit(blogData: any) {
-  if (this.commentForm.valid) {
-    const data = {
-      blog_id: blogData._id,
-      ...this.commentForm.value
-    };
-
-    const sanitizedData = sanitizeInputObject(data);
-
-    console.log(JSON.stringify(sanitizedData), "Sanitized");
-
-    this.http.post(`${environment.serverUrl}/connected/addCommentToBlog`, sanitizedData).subscribe((res: any) => {
-      if (res.status === true) {
-        this.toster.success("Comment Added Successfully");
-        this.commentForm.reset();
-        this.getSingleBlogbyMetaHeading(this.metaHeading);
-      } else {
-        this.toster.error("Some Error Occurred");
+  getSingleBlogbyMetaHeading(metaHeading: any) {
+    this.http.get(`${environment.serverUrl}/connected/getBlogByMetaHeading/${metaHeading}`).subscribe({
+      next: (res: any) => {
+        if (res.status === true) {
+          this.blogsData = res.message;
+          this.metaService.updateMetaTags({
+            title: this.blogsData?.metaheading,
+            description: this.blogsData?.keywords_description,
+            image: this.blogsData?.thumbnail,
+            url: this.fullUrl,
+            keywords:this.blogsData?.keywords
+          })
+          this.setupPagination();
+        } else {
+          this.toster.error(res.message || 'Blog Does Not Exist!');
+          // Wait 2 seconds before redirecting so user sees the message
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
+        }
+      },
+      error: (err) => {
+        this.toster.error('Something went wrong, please try again.');
+        this.router.navigate(['/']);
       }
     });
   }
-}
+
+
+  onSubmit(blogData: any) {
+    if (this.commentForm.valid) {
+      const data = {
+        blog_id: blogData._id,
+        ...this.commentForm.value
+      };
+
+      const sanitizedData = sanitizeInputObject(data);
+
+      console.log(JSON.stringify(sanitizedData), "Sanitized");
+
+      this.http.post(`${environment.serverUrl}/connected/addCommentToBlog`, sanitizedData).subscribe((res: any) => {
+        if (res.status === true) {
+          this.toster.success("Comment Added Successfully");
+          this.commentForm.reset();
+          this.getSingleBlogbyMetaHeading(this.metaHeading);
+        } else {
+          this.toster.error("Some Error Occurred");
+        }
+      });
+    }
+  }
 
 
 

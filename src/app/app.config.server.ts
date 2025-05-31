@@ -6,6 +6,8 @@ import { serverRoutes } from './app.routes.server';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
+import { provideShareButtonsOptions } from 'ngx-sharebuttons';
+import { shareIcons } from 'ngx-sharebuttons/icons';
 
 const serverConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +15,10 @@ const serverConfig: ApplicationConfig = {
     provideServerRouting(serverRoutes), // ✅ Correct usage
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
+
+      provideShareButtonsOptions(
+          shareIcons()
+        ),
   ]
 };
 
