@@ -3,11 +3,16 @@ import { provideServerRendering } from '@angular/platform-server';
 import { provideServerRouting } from '@angular/ssr'; // ✅ Correct import
 import { appConfig } from './app.config';
 import { serverRoutes } from './app.routes.server';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import { provideToastr } from 'ngx-toastr';
 
 const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
-    provideServerRouting(serverRoutes) // ✅ Correct usage
+    provideServerRouting(serverRoutes), // ✅ Correct usage
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers
   ]
 };
 

@@ -6,7 +6,7 @@
             <div class="post-meta">
                 <span>Last Update : {{blogsData?.updatedAt | date}}</span>
                 <span class="separator">•</span>
-                <span>42 comments</span>
+                <span>{{ `(${blogsData?.comments?.length})`}} Comments</span>
             </div>
             <div class="author-info">
                 <div class="author-avatar">
@@ -24,12 +24,13 @@
 
 
 <div class="post-content-wrapper">
-    <div class="featured-image">
-        <img src={{blogsData.thumbnail}} alt={{blogsData?.metaheading}}>
-    </div>
+    <div class="post-content-wrapper">
+        <div class="featured-image">
+            <img [src]="blogsData?.thumbnail" [alt]="blogsData?.metaheading" loading="lazy" width="800" height="450" />
+        </div>
 
     <div>
-       <app-survey-forms></app-survey-forms>
+        <!-- <app-survey-forms></app-survey-forms> -->
     </div>
 
     <article class="post-content">
@@ -44,108 +45,116 @@
 
     <!-- Share Section -->
     <div class="share-sticky">
-        <div class="share-section">
-            <h3 class="share-title">Share this article</h3>
+        <!-- <div class="share-section"> -->
             <div class="share-buttons">
                 <share-buttons appSocialStyle [theme]="'circles-dark'"
                     [include]="['facebook','linkedin','whatsapp','x','telegram']" [show]="3" [url]=fullUrl>
                 </share-buttons>
             </div>
-        </div>
     </div>
 
 
     <!-- Author Box -->
     <div class="author-box">
         <div class="author-box-avatar">
-            <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg?semt=ais_hybrid&w=740" alt="Author">
+            <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg?semt=ais_hybrid&w=740"
+                alt="Author">
         </div>
         <div class="author-box-info">
             <h3>{{blogsData?.authorName}}</h3>
             <p class="author-box-bio">Alex is a technology writer specializing in artificial intelligence and its
                 impacts on society. With a background in computer science and ethics, he explores how emerging
                 technologies shape our daily lives and future possibilities.</p>
-            <div class="author-social">
+            <!-- <div class="author-social">
                 <a href="#">Twitter</a>
                 <a href="#">LinkedIn</a>
                 <a href="#">Website</a>
-            </div>
+            </div> -->
         </div>
     </div>
 
     <!-- Comments Section -->
     <div class="comments-section">
-        <h2 class="comments-title">Comments (42)</h2>
+        <h2 class="comments-title">{{ `(${blogsData?.comments?.length})`}} Comments </h2>
 
         <!-- Comment 1 -->
-        <div class="comment">
-            <div class="comment-avatar">
-                <img src="/api/placeholder/60/60" alt="Commenter">
+        <div class="comment" *ngFor="let comment of paginatedComments">
+            <!-- Avatar -->
+            <div class="comment-avatar me-3">
+                <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg?semt=ais_hybrid&w=740"
+                    alt="commenter" width="50" height="50" class="rounded-circle" />
             </div>
+
+            <!-- Comment Content -->
             <div class="comment-content">
                 <div class="comment-header">
-                    <span class="comment-author">Sarah Miller</span>
-                    <span class="comment-date">2 hours ago</span>
+                    <span class="comment-author fw-bold">{{ comment.user_name }}</span>
+                    <span class="comment-date text-muted ms-2">
+                        {{ comment.createdAt | date: 'medium' }}
+                    </span>
                 </div>
-                <p class="comment-body">This article perfectly captures the balance we need to strike between embracing
-                    AI's benefits while being mindful of the ethical implications. I particularly appreciated the
-                    section on health monitoring - I've been using an AI health companion for my diabetes management and
-                    it's been genuinely life-changing.</p>
-                <a class="reply-button">Reply</a>
+                <p class="comment-body mt-1">
+                    {{ comment.comment }}
+                </p>
             </div>
         </div>
 
-        <!-- Comment 2 -->
-        <div class="comment">
-            <div class="comment-avatar">
-                <img src="/api/placeholder/60/60" alt="Commenter">
-            </div>
-            <div class="comment-content">
-                <div class="comment-header">
-                    <span class="comment-author">David Wong</span>
-                    <span class="comment-date">5 hours ago</span>
-                </div>
-                <p class="comment-body">I'm still concerned about the privacy aspects of having these AI systems
-                    constantly monitoring our behaviors and health. Has there been any progress on creating effective AI
-                    systems that can function without sending our data to the cloud?</p>
-                <a class="reply-button">Reply</a>
-            </div>
-        </div>
+        <!-- Pagination Controls -->
+        <nav *ngIf="totalPages > 1" class="mt-4">
+            <ul class="pagination justify-content-center shadow-sm rounded-pill bg-light px-3 py-2">
 
-        <!-- Comment 3 -->
-        <div class="comment">
-            <div class="comment-avatar">
-                <img src="/api/placeholder/60/60" alt="Commenter">
-            </div>
-            <div class="comment-content">
-                <div class="comment-header">
-                    <span class="comment-author">Elena Rodriguez</span>
-                    <span class="comment-date">Yesterday</span>
-                </div>
-                <p class="comment-body">As someone working in education, I'm fascinated by the potential of AI to
-                    personalize learning experiences. Would love to see a follow-up article focusing specifically on how
-                    AI is transforming education from elementary school through higher education.</p>
-                <a class="reply-button">Reply</a>
-            </div>
-        </div>
+                <!-- Prev Button -->
+                <li class="page-item" [class.disabled]="currentPage === 1">
+                    <button class="page-link border-0 bg-transparent text-dark fw-bold" (click)="prevPage()">
+                        « Prev
+                    </button>
+                </li>
+
+                <!-- Page Numbers -->
+                <li class="page-item mx-1" *ngFor="let page of [].constructor(totalPages); let i = index"
+                    [class.active]="i + 1 === currentPage">
+                    <button class="page-link border-0 rounded-circle"
+                        [ngClass]="{ 'bg-primary text-white fw-bold': i + 1 === currentPage, 'text-dark': i + 1 !== currentPage }"
+                        (click)="goToPage(i + 1)" style="width: 40px; height: 40px">
+                        {{ i + 1 }}
+                    </button>
+                </li>
+
+                <!-- Next Button -->
+                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                    <button class="page-link border-0 bg-transparent text-dark fw-bold" (click)="nextPage()">
+                        Next »
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+
 
         <!-- Comment Form -->
         <div class="comment-form">
             <h3>Leave a Comment</h3>
-            <form>
-                <div class="comment-form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" required="">
-                </div>
-                <div class="comment-form-group">
-                    <label for="email">Email (will not be published)</label>
-                    <input type="email" id="email" required="">
-                </div>
+            <form [formGroup]="commentForm" (ngSubmit)="onSubmit(blogsData)">
                 <div class="comment-form-group">
                     <label for="comment">Comment</label>
-                    <textarea id="comment" required=""></textarea>
+                    <textarea id="comment" formControlName="comment" rows="4"
+                        placeholder="Write your comment..."></textarea>
+
+                    <!-- Validation Errors -->
+                    <div class="error"
+                        *ngIf="commentForm.get('comment')?.touched && commentForm.get('comment')?.invalid">
+                        <small *ngIf="commentForm.get('comment')?.errors?.['required']">Comment is required.</small>
+                        <small *ngIf="commentForm.get('comment')?.errors?.['minlength']">Minimum 5 characters
+                            required.</small>
+                        <small *ngIf="commentForm.get('comment')?.errors?.['profanity']">
+                            Inappropriate words used: {{ commentForm.get('comment')?.errors?.['profanity'].join(', ') }}
+                        </small>
+                    </div>
                 </div>
+
+                <button class="btn btn-primary w-100" type="submit" [disabled]="commentForm.invalid">Submit</button>
             </form>
         </div>
+
     </div>
 </div>

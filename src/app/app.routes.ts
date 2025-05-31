@@ -6,6 +6,7 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 import { HomeComponent } from './features/home/home/home.component';
 import { ViewSinglePostComponent } from './pages/view-single-post/view-single-post.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes  = [
     {path:'', component:HomeComponent},
@@ -21,5 +22,10 @@ export const routes: Routes  = [
         { id: '3' }
       ]
     } },
-    { path: '**', redirectTo: 'about' } // fallback
+    {
+      path:'not-found',
+      component:NotFoundComponent
+
+    },
+    { path: '**', redirectTo: 'not-found' } // fallback
   ];
