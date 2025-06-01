@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+<!-- <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="/">Surveyer.com</a> <!-- Changed span to 'a' for proper anchor behavior -->
+    <a class="navbar-brand text-white" href="/">Surveyer.com</a>
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,12 +15,42 @@
         <li class="nav-item" [ngClass]="{ 'active': activeIndex === 2 }">
           <a class="nav-link text-white" (click)="showHideActiveClass(2)" [routerLink]="['/surveys']">Surveys</a>
         </li>
-        <!-- <li class="nav-item" [ngClass]="{ 'active': activeIndex === 3 }">
+        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 3 }">
           <a class="nav-link text-white" (click)="showHideActiveClass(3)">Upcoming Surveys</a>
-        </li> -->
-        <!-- <li class="nav-item" [ngClass]="{ 'active': activeIndex === 4 }">
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': activeIndex === 4 }">
           <a class="nav-link text-white" (click)="showHideActiveClass(4)">Survey Suggestions</a>
-        </li> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <div class="logo-container d-flex align-items-center">
+        <img src="/surveynews.png" alt="Survey News Logo" height="40" class="me-2" />
+        <span class="logo-text text-white fs-5">Survey<span class="highlight text-warning">NEWS</span>.in</span>
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/contact">Contact</a>
+        </li>
       </ul>
     </div>
   </div>

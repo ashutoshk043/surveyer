@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './disclaimer.component.css'
 })
 export class DisclaimerComponent {
-
+email = "pollerpublic@gmail.com"
 }

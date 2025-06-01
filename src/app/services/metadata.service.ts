@@ -8,11 +8,11 @@ export class MetaService {
 
   constructor(private meta: Meta, private titleService: Title) { }
 
- updateMetaTags({
+  updateMetaTags({
     title = '',
     description = '',
     image = '',
-    url ='',
+    url = '',
     type = 'website',
     keywords = []
   }: {
@@ -25,17 +25,25 @@ export class MetaService {
   }) {
     this.titleService.setTitle(title);
 
+    // Standard SEO
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({ name: 'keywords', content: keywords.join(', ') });
+
+    // Open Graph (Facebook, LinkedIn, Telegram, WhatsApp)
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:image', content: image });
     this.meta.updateTag({ property: 'og:url', content: url });
     this.meta.updateTag({ property: 'og:type', content: type });
 
-    // Optional: Twitter tags
+    // Twitter Card
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' }); // or 'summary'
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.updateTag({ name: 'twitter:image', content: image });
+    this.meta.updateTag({ name: 'twitter:url', content: url });
+
+    // Optional but recommended for completeness
+    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
   }
 }

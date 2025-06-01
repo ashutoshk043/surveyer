@@ -60,7 +60,7 @@ getblogs() {
 
         // Truncate description to 150 chars (or any length you prefer)
         if (e.description && e.description.length > 700) {
-          e.description = e.description.slice(0, 700) + '...';
+          e.description = e.description.slice(0, 150) + '...';
         }
       });
 
